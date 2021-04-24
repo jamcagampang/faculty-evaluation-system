@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2021 at 03:32 PM
+-- Generation Time: Apr 24, 2021 at 05:52 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -133,6 +133,13 @@ CREATE TABLE `faculty` (
   `department` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `faculty`
+--
+
+INSERT INTO `faculty` (`id`, `first_name`, `middle_name`, `last_name`, `email_address`, `password`, `designation`, `department`) VALUES
+(1, 'A', 'B', 'C', 'abc@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'NONE', 'NONE');
+
 -- --------------------------------------------------------
 
 --
@@ -160,6 +167,13 @@ CREATE TABLE `student` (
   `password` varchar(50) NOT NULL,
   `last_update_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`id`, `first_name`, `middle_name`, `last_name`, `email_address`, `password`, `last_update_date`) VALUES
+(1, 'C', 'B', 'A', 'cba@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL);
 
 -- --------------------------------------------------------
 
@@ -293,7 +307,7 @@ ALTER TABLE `evaluation_submission_answer`
 -- AUTO_INCREMENT for table `faculty`
 --
 ALTER TABLE `faculty`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `faculty_course_assignment`
@@ -305,7 +319,7 @@ ALTER TABLE `faculty_course_assignment`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `student_course_assignment`
