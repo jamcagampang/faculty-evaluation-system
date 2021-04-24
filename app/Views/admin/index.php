@@ -20,15 +20,15 @@
 		<div class="sidebar-menu">
 			<ul>
 				<li>
-					<a href="" class="active"><span class="las la-clipboard"></span><span>Dashboard</span></a>
+					<a href="/admin" class="active"><span class="las la-clipboard"></span><span>Dashboard</span></a>
 				</li>
 				<li>
 					<div class="menu">
 						<a class="sub-btn"><span class="las la-plus"></span><span class="name">Create</span><i class="lar la-arrow-alt-circle-right dropdown"></i></a>
 						<div class="sub-menu">
-							<a href="#" class="sub-item"> Faculty </a>
-							<a href="#" class="sub-item"> Student </a>
-							<a href="#" class="sub-item"> Course </a>
+							<a href="/admin/faculty/add" class="sub-item"> Faculty </a>
+							<a href="/admin/student/add" class="sub-item"> Student </a>
+							<a href="/admin/course/add" class="sub-item"> Course </a>
 						</div>
 					</div>
 				</li>
@@ -36,9 +36,9 @@
 					<div class="menu">
 						<a class="sub-btn"><span class="las la-folder-open"></span><span class="name">View</span><i class="lar la-arrow-alt-circle-right dropdown"></i></a>
 						<div class="sub-menu">
-							<a href="#" class="sub-item"> Faculties </a>
-							<a href="#" class="sub-item"> Students </a>
-							<a href="#" class="sub-item"> Courses </a>
+							<a href="/admin/faculty/list" class="sub-item"> Faculties </a>
+							<a href="/admin/student/list" class="sub-item"> Students </a>
+							<a href="/admin/course/list" class="sub-item"> Courses </a>
 						</div>
 					</div>
 				</li>
@@ -46,8 +46,8 @@
 					<div class="menu">
 						<a class="sub-btn"><span class="las la-edit"></span><span class="name">Assign</span><i class="lar la-arrow-alt-circle-right dropdown"></i></a>
 						<div class="sub-menu">
-							<a href="#" class="sub-item"> Assign Faculty to Courses </a>
-							<a href="#" class="sub-item"> Assign Student to Courses </a>
+							<a href="/admin/faculty/assign" class="sub-item"> Assign Faculty to Courses </a>
+							<a href="/admin/student/assign" class="sub-item"> Assign Student to Courses </a>
 						</div>
 					</div>
 				</li>
@@ -55,8 +55,8 @@
 					<div class="menu">
 						<a class="sub-btn"><span class="las la-cogs"></span><span class="name">Settings</span><i class="lar la-arrow-alt-circle-right dropdown"></i></a>
 						<div class="sub-menu">
-							<a href="#" class="sub-item"> Shift Students </a>
-							<a href="#" class="sub-item"> Manage Questionnaires </a>
+							<a href="/admin/student/shift" class="sub-item"> Shift Students </a>
+							<a href="/admin/evaluation/list" class="sub-item"> Manage Questionnaires </a>
 						</div>
 					</div>
 				</li>
@@ -64,15 +64,14 @@
 					<div class="menu">
 						<a class="sub-btn"><span class="las la-chart-area"></span><span class="name">Report</span><i class="lar la-arrow-alt-circle-right dropdown"></i></a>
 						<div class="sub-menu">
-							<a href="#" class="sub-item"> Faculty Evaluation </a>
-							<a href="#" class="sub-item"> Evaluation Chart </a>
-							<a href="#" class="sub-item"> Non-Submitted Students </a>
+							<a href="/admin/report/list" class="sub-item"> Faculty Evaluation </a>
+							<a href="/admin/report/chart" class="sub-item"> Evaluation Chart </a>
+							<a href="/admin/report/non-submitted" class="sub-item"> Non-Submitted Students </a>
 						</div>
 					</div>
 				</li>
 			</ul>
 		</div>
-
 	</div>
 
 	<script type="text/javascript">
@@ -99,11 +98,10 @@
 				<input type="search" placeholder="Search here" />
 			</div>
 
-
 			<div class="user-wrapper">
-				<img src="images/student.png" width="40px" height="40px" alt="">
+				<img src="/images/student.png" width="40px" height="40px" alt="">
 				<div>
-					<h4>John Doe</h4>
+					<h4><?php echo $name ?></h4>
 					<small>Super Admin</small>
 				</div>
 			</div>

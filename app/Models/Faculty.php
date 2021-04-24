@@ -11,4 +11,6 @@ class Faculty extends Model
     protected $primaryKey = 'id';
 
     protected $allowedFields = ['first_name', 'middle_name', 'last_name', 'email_address', 'password', 'designation', 'department'];
+
+    protected $useAutoIncrement = true;
 }

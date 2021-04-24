@@ -18,15 +18,15 @@
         <div class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="#" class="active"><span class="las la-tachometer-alt"></span>
+                    <a href="/faculty" class="active"><span class="las la-tachometer-alt"></span>
                         <span>Dashboard</span></a>
                 </li>
                 <li>
-                    <a href="#"><span class="las la-clipboard-list"></span>
+                    <a href="/faculty/feedback"><span class="las la-clipboard-list"></span>
                         <span>Co-Faculty Feedback</span></a>
                 </li>
                 <li>
-                    <a href="#"><span class="las la-university"></span>
+                    <a href="/faculty/result"><span class="las la-university"></span>
                         <span>View Evaluation Result</span></a>
                 </li>
         </div>
@@ -48,7 +48,7 @@
             <div class="user-wrapper">
                 <img src="/images/faculty.png" width="40px" height="40px" alt="">
                 <div>
-                    <h4>Mr. Arman Santos</h4>
+                    <h4><?php echo $first_name ?> <?php echo $last_name ?></h4>
                     <small>Faculty Staff</small>
                 </div>
             </div>

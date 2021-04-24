@@ -5,9 +5,8 @@ namespace App\Controllers;
 use App\Models\Admin;
 use App\Models\Faculty;
 use App\Models\Student;
-use CodeIgniter\Controller;
 
-class LoginController extends Controller
+class LoginController extends BaseController
 {
 
     public function login()
@@ -28,6 +27,9 @@ class LoginController extends Controller
                     return redirect()->to('home');
                 }
 
+                $_SESSION['type'] = $type;
+                $_SESSION['id'] = $record['id'];
+
                 return redirect()->to('admin');
             case '1':
 
@@ -39,6 +41,9 @@ class LoginController extends Controller
                     return redirect()->to('home');
                 }
 
+                $_SESSION['type'] = $type;
+                $_SESSION['id'] = $record['id'];
+
                 return redirect()->to('faculty');
             case '2':
 
@@ -49,6 +54,9 @@ class LoginController extends Controller
                 if (!isset($record)) {
                     return redirect()->to('home');
                 }
+
+                $_SESSION['type'] = $type;
+                $_SESSION['id'] = $record['id'];
 
                 return redirect()->to('student');
         }

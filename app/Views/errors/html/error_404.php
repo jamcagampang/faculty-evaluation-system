@@ -17,7 +17,7 @@
 	}
 	body {
 		height: 100%;
-		background: #fafafa;
+		background-color: #CAB99D !important;
 		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 		color: #777;
 		font-weight: 300;
@@ -67,18 +67,23 @@
 		color: #dd4814;
 	}
 </style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
 	<div class="wrap">
 		<h1>404 - File Not Found</h1>
 
-		<p>
-			<?php if (! empty($message) && $message !== '(null)') : ?>
-				<?= esc($message) ?>
-			<?php else : ?>
-				Sorry! Cannot seem to find the page you were looking for.
-			<?php endif ?>
-		</p>
+		<img src="/images/404.jpg" alt="" style="width: 100%;">
+
+		<br>
+		<br>
+
+		<button class="btn btn-info" onclick="goBack()">Go Back</button>
 	</div>
+	<script>
+		function goBack() {
+			window.history.back();
+		}
+	</script>
 </body>
 </html>

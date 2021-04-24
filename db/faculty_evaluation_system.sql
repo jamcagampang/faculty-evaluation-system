@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2021 at 05:52 PM
+-- Generation Time: Apr 24, 2021 at 08:50 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -39,7 +39,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `name`, `username`, `password`) VALUES
-(1, 'John Doe', 'admin', '21232f297a57a5a743894a0e4a801fc3');
+(1, 'Tricia', 'admin', '21232f297a57a5a743894a0e4a801fc3');
 
 -- --------------------------------------------------------
 
@@ -54,6 +54,14 @@ CREATE TABLE `course` (
   `semester` varchar(50) NOT NULL,
   `batch` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `course`
+--
+
+INSERT INTO `course` (`id`, `course_name`, `course_code`, `semester`, `batch`) VALUES
+(1, 'Course 1', 'C1', '1st', '2019-2020'),
+(2, 'Course 2', 'C2', '1st', '2019-2020');
 
 -- --------------------------------------------------------
 
@@ -138,7 +146,7 @@ CREATE TABLE `faculty` (
 --
 
 INSERT INTO `faculty` (`id`, `first_name`, `middle_name`, `last_name`, `email_address`, `password`, `designation`, `department`) VALUES
-(1, 'A', 'B', 'C', 'abc@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'NONE', 'NONE');
+(1, 'John', 'Malate', 'Doe', 'john.doe@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'ftf', 'gs');
 
 -- --------------------------------------------------------
 
@@ -173,7 +181,7 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`id`, `first_name`, `middle_name`, `last_name`, `email_address`, `password`, `last_update_date`) VALUES
-(1, 'C', 'B', 'A', 'cba@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL);
+(1, 'Maria', 'Leonora', 'Theresa', 'the.grudge@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL);
 
 -- --------------------------------------------------------
 
@@ -271,7 +279,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `evaluation`

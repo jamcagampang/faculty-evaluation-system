@@ -23,9 +23,25 @@ $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 $routes->setAutoRoute(true);
+
 $routes->post('login', 'LoginController::login');
+
+// Admin
 $routes->get('admin', 'AdminController::index');
+$routes->get('admin/faculty/add', 'AdminController::addFacultyView');
+$routes->post('admin/faculty/add', 'AdminController::addFaculty');
+$routes->get('admin/faculty/list', 'AdminController::listFaculty');
+$routes->get('admin/student/add', 'AdminController::addStudentView');
+$routes->post('admin/student/add', 'AdminController::addStudent');
+$routes->get('admin/student/list', 'AdminController::listStudent');
+$routes->get('admin/course/add', 'AdminController::addCourseView');
+$routes->post('admin/course/add', 'AdminController::addCourse');
+$routes->get('admin/course/list', 'AdminController::listCourse');
+
+// Faculty
 $routes->get('faculty', 'FacultyController::index');
+
+// Student
 $routes->get('student', 'StudentController::index');
 
 /*

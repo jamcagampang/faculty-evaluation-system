@@ -18,15 +18,15 @@
 		<div class="sidebar-menu">
 			<ul>
 				<li>
-					<a href="#" class="active"><span class="las la-clipboard"></span>
+					<a href="/student" class="active"><span class="las la-clipboard"></span>
 						<span>Dashboard</span></a>
 				</li>
 				<li>
-					<a href="#"><span class="las la-clipboard-list"></span>
+					<a href="/student/course"><span class="las la-clipboard-list"></span>
 						<span>Course</span></a>
 				</li>
 				<li>
-					<a href="#"><span class="las la-university"></span>
+					<a href="/student/feedback"><span class="las la-university"></span>
 						<span>Faculty Feedback</span></a>
 				</li>
 			</ul>
@@ -49,7 +49,7 @@
 			<div class="user-wrapper">
 				<img src="/images/student.png" width="40px" height="40px" alt="">
 				<div>
-					<h4>Jessica Hu</h4>
+					<h4><?php echo $first_name ?> <?php echo $last_name ?></h4>
 					<small>Student</small>
 				</div>
 			</div>
