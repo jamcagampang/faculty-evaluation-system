@@ -23,6 +23,10 @@ $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 $routes->setAutoRoute(true);
+$routes->post('login', 'LoginController::login');
+$routes->get('admin', 'AdminController::index');
+$routes->get('faculty', 'FacultyController::index');
+$routes->get('student', 'StudentController::index');
 
 /*
  * --------------------------------------------------------------------
