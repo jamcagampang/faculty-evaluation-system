@@ -40,6 +40,10 @@ $routes->get('admin/course/list', 'AdminController::listCourse');
 
 // Faculty
 $routes->get('faculty', 'FacultyController::index');
+$routes->get('faculty/feedback', 'FacultyController::feedbackView');
+$routes->post('faculty/feedback', 'FacultyController::addFeedback');
+$routes->get('faculty/result', 'FacultyController::reportView');
+$routes->get('faculty/result/(:num)', 'FacultyController::reportView/$1');
 
 // Student
 $routes->get('student', 'StudentController::index');

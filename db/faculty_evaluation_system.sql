@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2021 at 08:50 PM
+-- Generation Time: Apr 27, 2021 at 06:22 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -77,6 +77,34 @@ CREATE TABLE `evaluation` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `evaluation_faculty`
+--
+
+CREATE TABLE `evaluation_faculty` (
+  `id` int(11) NOT NULL,
+  `evaluator` int(11) NOT NULL,
+  `evaluatee` int(11) NOT NULL,
+  `rate_1` int(11) NOT NULL,
+  `rate_2` int(11) NOT NULL,
+  `rate_3` int(11) NOT NULL,
+  `rate_4` int(11) NOT NULL,
+  `rate_5` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `evaluation_faculty`
+--
+
+INSERT INTO `evaluation_faculty` (`id`, `evaluator`, `evaluatee`, `rate_1`, `rate_2`, `rate_3`, `rate_4`, `rate_5`) VALUES
+(10, 2, 1, 5, 4, 3, 4, 2),
+(11, 2, 3, 5, 4, 3, 4, 1),
+(12, 2, 4, 1, 2, 1, 3, 2),
+(13, 3, 2, 5, 5, 5, 5, 5),
+(14, 3, 1, 4, 3, 2, 4, 5);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `evaluation_faculty_designation`
 --
 
@@ -146,7 +174,10 @@ CREATE TABLE `faculty` (
 --
 
 INSERT INTO `faculty` (`id`, `first_name`, `middle_name`, `last_name`, `email_address`, `password`, `designation`, `department`) VALUES
-(1, 'John', 'Malate', 'Doe', 'john.doe@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'ftf', 'gs');
+(1, 'John', 'Malate', 'Doe', 'john.doe@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'ftf', 'gs'),
+(2, 'Randy', 'Reyes', 'Otero', 'randy.otero@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'ptf', 'jhs'),
+(3, 'Jamel', 'N', 'Cagampang', 'jam@maj.com', 'e10adc3949ba59abbe56e057f20f883e', 'ftf', 'gs'),
+(4, 'A', 'B', 'C', 'abc@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'ptf', 'jhs');
 
 -- --------------------------------------------------------
 
@@ -215,6 +246,12 @@ ALTER TABLE `course`
 -- Indexes for table `evaluation`
 --
 ALTER TABLE `evaluation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `evaluation_faculty`
+--
+ALTER TABLE `evaluation_faculty`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -288,6 +325,12 @@ ALTER TABLE `evaluation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `evaluation_faculty`
+--
+ALTER TABLE `evaluation_faculty`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT for table `evaluation_faculty_designation`
 --
 ALTER TABLE `evaluation_faculty_designation`
@@ -315,7 +358,7 @@ ALTER TABLE `evaluation_submission_answer`
 -- AUTO_INCREMENT for table `faculty`
 --
 ALTER TABLE `faculty`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `faculty_course_assignment`
