@@ -51,25 +51,15 @@
 						</div>
 					</div>
 				</li>
-				<li>
-					<div class="menu">
-						<a class="sub-btn"><span class="las la-cogs"></span><span class="name">Settings</span><i class="lar la-arrow-alt-circle-right dropdown"></i></a>
-						<div class="sub-menu">
-							<a href="/admin/student/shift" class="sub-item"> Shift Students </a>
-							<a href="/admin/evaluation/list" class="sub-item"> Manage Questionnaires </a>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="menu">
-						<a class="sub-btn"><span class="las la-chart-area"></span><span class="name">Report</span><i class="lar la-arrow-alt-circle-right dropdown"></i></a>
-						<div class="sub-menu">
-							<a href="/admin/report/list" class="sub-item"> Faculty Evaluation </a>
-							<a href="/admin/report/chart" class="sub-item"> Evaluation Chart </a>
-							<a href="/admin/report/non-submitted" class="sub-item"> Non-Submitted Students </a>
-						</div>
-					</div>
-				</li>
+                <li>
+                    <div class="menu">
+                        <a class="sub-btn"><span class="las la-chart-area"></span><span class="name">Report</span><i class="lar la-arrow-alt-circle-right dropdown"></i></a>
+                        <div class="sub-menu">
+                            <a href="/admin/report/faculty" class="sub-item"> Faculty Evaluation </a>
+                            <a href="/admin/report/student" class="sub-item"> Student Evaluation </a>
+                        </div>
+                    </div>
+                </li>
 			</ul>
 		</div>
 	</div>
@@ -137,7 +127,7 @@
                                         <?php if($list): ?>
                                         <?php foreach($list as $item): ?>
                                         <tr>
-                                            <td> <?php echo str_pad($item['id'], 10, '0', STR_PAD_LEFT); ?> </td>
+                                            <td> <?php echo $item['student_id']; ?> </td>
                                             <td> <?php echo implode(' ', array($item['first_name'], $item['middle_name'], $item['last_name'])); ?> </td>
                                             <td> <?php echo $item['email_address']; ?> </td>
                                             <td> --- </td>

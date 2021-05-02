@@ -5,6 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>Student Dashboard</title>
 	<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/css/style.css">
 </head>
 
@@ -12,7 +14,7 @@
 	<input type="checkbox" id="nav-toggle">
 	<div class="sidebar">
 		<div class="sidebar-brand">
-			<h3><span class="lab la-accusoft"></span><span>Faculty Evaluation System</span></h3>
+			<h3><span class="lab la-accusoft"></span><span>Student</span></h3>
 		</div>
 
 		<div class="sidebar-menu">

@@ -54,10 +54,11 @@ class FacultyController extends BaseController
             'first_name' => $record['first_name'],
             'last_name' => $record['last_name'],
             'faculties' => [],
-            'evaluated' => 0
+            'evaluated' => 0,
+            'questionaire' => []
         ];
 
-        $query = $this->db->query('select * from faculty where id != ' . $_SESSION['id']);
+        $query = $this->db->query('select * from faculty where id != ' . $_SESSION['id'] . ' order by first_name ASC');
 
         $results = $query->getResult();
 
@@ -73,6 +74,11 @@ class FacultyController extends BaseController
             $data['evaluated'] = $row->c;
         }
 
+        $questionaireString = file_get_contents('./questionaire.json');
+        $questionaireArray = json_decode($questionaireString, true);
+
+        $data['questionaire'] = $questionaireArray;
+
         return view('faculty/feedback', $data);
     }
 
@@ -83,14 +89,38 @@ class FacultyController extends BaseController
 
         $EvaluationFaculty->where(array('evaluator' => $_SESSION['id'], 'evaluatee' => $this->request->getVar('evaluatee')))->delete();
 
+        $content = [];
+
+        $questionaireString = file_get_contents('./questionaire.json');
+        $questionaireArray = json_decode($questionaireString, true);
+
+        $criteria = $questionaireArray['criteria'];
+
+        foreach($criteria as $i => $c) {
+
+            $dbCriteria = [
+                'answer' => [],
+                'comment' => ''
+            ];
+
+            foreach($c['questions'] as $j => $q) {
+
+                $answer = $this->request->getVar('c' . $i . 'q' . $j);
+
+                $dbCriteria['answer'][$j] = $answer;
+            }
+
+            $dbCriteria['comment'] = $this->request->getVar('comment' . $i);
+
+            $content[$i] = $dbCriteria;
+        }
+
+        $data['questionaire'] = $questionaireArray;
+
         $data = [
             'evaluator' => $_SESSION['id'],
             'evaluatee'  => $this->request->getVar('evaluatee'),
-            'rate_1'  => $this->request->getVar('q1'),
-            'rate_2'  => $this->request->getVar('q2'),
-            'rate_3'  => $this->request->getVar('q3'),
-            'rate_4'  => $this->request->getVar('q4'),
-            'rate_5'  => $this->request->getVar('q5')
+            'content'  => json_encode($content)
         ];
 
         $EvaluationFaculty->insert($data);
@@ -122,7 +152,8 @@ class FacultyController extends BaseController
             'evaluation' => []
         ];
 
-        $query = $this->db->query('select * from faculty');
+        // All Faculty
+        $query = $this->db->query('select * from faculty where id != ' . $_SESSION['id']);
 
         $results = $query->getResult();
 
@@ -136,39 +167,91 @@ class FacultyController extends BaseController
             return redirect()->to('/faculty/result/' . $data['faculties'][0]['id']);
         }
 
-        $query = $this->db->query('select * from evaluation_faculty where evaluatee = ' . $id);
+        $query = $this->db->query('select * from evaluation_faculty where evaluatee = ' . $id . ' and evaluator = ' . $_SESSION['id']);
 
         $results = $query->getResult();
 
-        $lastPart = [0, 0, 0, 0, 0];
+        $questionaireString = file_get_contents('./questionaire.json');
+        $questionaireArray = json_decode($questionaireString, true);
+
+        $questionaire = $questionaireArray;
 
         $count = 0;
 
+        $lastPartValue = [];
+        $lastPart = [];
+        $headers = [];
+        $comments = [];
+
+        // Last Part Intialization
+        foreach($questionaire['criteria'] as $i => $c) {
+
+            $lastPart[$i] = [];
+            $lastPartValue[$i] = [];
+
+            $header = [
+                'text' => $c['name'],
+                'count' => count($c['questions'])
+            ];
+
+            $headers[$i] = $header;
+
+            foreach ($c['questions'] as $j => $q) {
+                $lastPartValue[$i][$j] = [];
+                $headers[$i]['questions'][$j] = $j + 1;
+            }
+        }
+
+        $data['headers'] = $headers;
+
         foreach ($results as $row) {
 
-            $rowArray = (array) $row;
+            $contentString = $row->content;
+            $contentArray = json_decode($contentString, true);
 
-            $rowArray['mean'] = ($rowArray['rate_1'] + $rowArray['rate_2'] + $rowArray['rate_3'] + $rowArray['rate_4'] + $rowArray['rate_5']) / 5;
+            $assessment = [];
 
-            $lastPart[0] += $rowArray['rate_1'];
-            $lastPart[1] += $rowArray['rate_2'];
-            $lastPart[2] += $rowArray['rate_3'];
-            $lastPart[3] += $rowArray['rate_4'];
-            $lastPart[4] += $rowArray['rate_5'];
+            foreach($contentArray as $i => $c) {
 
-            $data['evaluation'][] = $rowArray;
+                $criteriaDisplay = [
+                    'rate' => $c['answer'],
+                    'average' => $this->average($c['answer'])
+                ];
+
+                $assessment[] = $criteriaDisplay;
+
+                foreach ($c['answer'] as $j => $a) {
+                    $lastPartValue[$i][$j][] = $a;
+                }
+
+                if (!empty($c['comment'])) {
+                    $comments[] = $c['comment'];
+                }
+            }
+
+            $data['evaluation'][] = $assessment;
 
             $count++;
         }
 
-        $lastPart[0] = round($lastPart[0] / $count, 2);
-        $lastPart[1] = round($lastPart[1] / $count, 2);
-        $lastPart[2] = round($lastPart[2] / $count, 2);
-        $lastPart[3] = round($lastPart[3] / $count, 2);
-        $lastPart[4] = round($lastPart[4] / $count, 2);
+        foreach ($lastPartValue as $i => $c) {
+            foreach ($c as $j => $q) {
+                $lastPart[$i][$j] = $this->average($q);
+            }
+        }
 
         $data['last_part'] = $lastPart;
+        $data['comments'] = $comments;
 
         return view('faculty/report', $data);
+    }
+
+    private function average($array) {
+
+        if (count($array) == 0) {
+            return 0;
+        }
+
+        return round(array_sum($array) / count($array), 2);
     }
 }

@@ -37,6 +37,15 @@ $routes->get('admin/student/list', 'AdminController::listStudent');
 $routes->get('admin/course/add', 'AdminController::addCourseView');
 $routes->post('admin/course/add', 'AdminController::addCourse');
 $routes->get('admin/course/list', 'AdminController::listCourse');
+$routes->get('admin/faculty/assign', 'AdminController::assignFacultyCourseView');
+$routes->post('admin/faculty/assign', 'AdminController::assignFacultyCourse');
+$routes->get('admin/student/assign', 'AdminController::assignStudentCourseView');
+$routes->post('admin/student/assign', 'AdminController::assignStudentCourse');
+$routes->get('admin/report/faculty', 'AdminController::reportViewFaculty');
+$routes->get('admin/report/faculty/(:num)', 'AdminController::reportViewFaculty/$1');
+$routes->get('admin/report/student', 'AdminController::reportViewStudent');
+$routes->get('admin/report/student/(:num)', 'AdminController::reportViewStudent/$1');
+$routes->get('admin/report/student/(:num)/(:num)', 'AdminController::reportViewStudent/$1/$2');
 
 // Faculty
 $routes->get('faculty', 'FacultyController::index');
@@ -47,6 +56,8 @@ $routes->get('faculty/result/(:num)', 'FacultyController::reportView/$1');
 
 // Student
 $routes->get('student', 'StudentController::index');
+$routes->get('student/feedback', 'StudentController::feedbackView');
+$routes->post('student/feedback', 'StudentController::addFeedback');
 
 /*
  * --------------------------------------------------------------------

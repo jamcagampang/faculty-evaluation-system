@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title> Create New Course </title>
+    <title> Assign Faculty to Course </title>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="/css/style.css">
@@ -25,10 +25,10 @@
                 <li>
                     <div class="menu">
                         <a class="sub-btn"><span class="las la-plus"></span><span class="name">Create</span><i class="lar la-arrow-alt-circle-right dropdown"></i></a>
-                        <div class="sub-menu" style="display: block;">
+                        <div class="sub-menu">
                             <a href="/admin/faculty/add" class="sub-item"> Faculty </a>
                             <a href="/admin/student/add" class="sub-item"> Student </a>
-                            <a href="/admin/course/add" class="sub-item active"> Course </a>
+                            <a href="/admin/course/add" class="sub-item"> Course </a>
                         </div>
                     </div>
                 </li>
@@ -45,8 +45,8 @@
                 <li>
                     <div class="menu">
                         <a class="sub-btn"><span class="las la-edit"></span><span class="name">Assign</span><i class="lar la-arrow-alt-circle-right dropdown"></i></a>
-                        <div class="sub-menu">
-                            <a href="/admin/faculty/assign" class="sub-item"> Assign Faculty to Courses </a>
+                        <div class="sub-menu" style="display: block;">
+                            <a href="/admin/faculty/assign" class="sub-item active"> Assign Faculty to Courses </a>
                             <a href="/admin/student/assign" class="sub-item"> Assign Student to Courses </a>
                         </div>
                     </div>
@@ -98,32 +98,38 @@
 
         <main>
             <div class="container" style="padding-left: 40px">
-                <h2> Create New Course </h2>
+                <h2> Assign Faculty to Course </h2>
                 <div id="loginbox" style="margin-top:10px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                     <div class="panel panel-info">
 
                         <div style="padding-top:10px" class="panel-body">
 
-                            <form id="loginform" class="form-horizontal" role="form" method="POST" action="<?= site_url('/admin/course/add') ?>">
+                            <form id="loginform" class="form-horizontal" role="form" method="POST" action="<?= site_url('/admin/faculty/assign') ?>">
 
                                 <div style="margin-bottom: 10px" class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input id="login-username" type="text" class="form-control" name="course_name" value="" placeholder=" Course Name" style="height: 38.99306px;width: 503.99306px;">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+
+                                    <select class="form-control" name="faculty" placeholder="Faculty" style="height: 38.99306px;width: 503.99306px;">
+                                        <option disabled selected hidden value="0">Faculty</option>
+                                        <?php if ($faculties) : ?>
+                                            <?php foreach ($faculties as $item) : ?>
+                                                <option value="<?php echo $item['id']; ?>"><?php echo implode(' ', array($item['first_name'], $item['middle_name'], $item['last_name'])); ?></option>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </select>
                                 </div>
 
                                 <div style="margin-bottom: 10px" class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input id="login-username" type="text" class="form-control" name="course_code" value="" placeholder=" Course Code" style="height: 38.99306px;width: 503.99306px;">
-                                </div>
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 
-                                <div style="margin-bottom: 10px" class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input id="login-username" type="text" class="form-control" name="semester" value="" placeholder=" Semester" style="height: 38.99306px;width: 503.99306px;">
-                                </div>
-
-                                <div style="margin-bottom: 10px" class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input id="login-username" type="text" class="form-control" name="batch" value="" placeholder=" Batch" style="height: 38.99306px;width: 503.99306px;">
+                                    <select class="form-control" name="course" placeholder="Course" style="height: 38.99306px;width: 503.99306px;">
+                                        <option disabled selected hidden value="0">Course</option>
+                                        <?php if ($courses) : ?>
+                                            <?php foreach ($courses as $item) : ?>
+                                                <option value="<?php echo $item['id']; ?>"><?php echo $item['course_name'] . ' (' . $item['course_code'] . ')'; ?></option>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </select>
                                 </div>
 
                                 <div style="margin-top:10px" class="form-group">
@@ -141,6 +147,13 @@
 
         </main>
     </div>
+    <script>
+        $(document).ready(function(e) {
+            <?php if (isset($faculty) && isset($course)) : ?>
+                alert('<?php echo $course?>' + ' has been successfully assigned to ' + '<?php echo $faculty?>' + '.');
+            <?php endif; ?>
+        });
+    </script>
 
 </body>
 

@@ -10,5 +10,5 @@ class EvaluationFaculty extends Model
 
     protected $primaryKey = 'id';
 
-    protected $allowedFields = ['evaluator', 'evaluatee', 'rate_1', 'rate_2', 'rate_3', 'rate_4', 'rate_5'];
+    protected $allowedFields = ['evaluator', 'evaluatee', 'content'];
 }

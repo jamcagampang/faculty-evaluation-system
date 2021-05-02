@@ -1,0 +1,64 @@
+{
+    "criteria": [{
+        "name": "ORGANIZATION AND PLANNING",
+        "questions": [
+            "Gives an overview or outline of the lesson or states the objectives of the lesson",
+            "Explain the relationship of the present lesson with the previous",
+            "Explains the assignment clearly",
+            "Uses audio visual ads that are clear, interesting and easy to understand"
+        ]
+    }, {
+        "name": "CONTENT AND MASTERY",
+        "questions": [
+            "Does not look at his/her notes while teaching",
+            "Relates the question to practical life situations/problems or to the experiences of the students",
+            "Readily provides clear, interesting, specific examples to clarify difficult ideas/concepts/principles",
+            "Assign us to read journals, articles or to access websites from which we can learn latest information about particular lesson",
+            "Answers our questions knowledgably/satisfactory"
+        ]
+    }, {
+        "name": "COMMUNICATION SKILLS",
+        "questions": [
+            "Communicates fluent in the medium of instructions, whether in English or Filipino.",
+            "Speaks in a well-modulated voice that can be heard even in the last row of our classroom",
+            "Does not commit glaring errors in grammar",
+            "Encourages us to answer by appreciating correct responses or by giving clues when we give wrong response",
+            "Use facial expressions and hand gestures effectively to emphasize a point or data"
+        ]
+    }, {
+        "name": "INSTRUCTIONAL SKILLS",
+        "questions": [
+            "Asks challenging, thought-provoking questions",
+            "Distributes questions to as many as possible",
+            "Simplifies difficult concepts to our level of understanding",
+            "Arouses and sustains my interest in the lesson",
+            "Makes us participate actively in class activities",
+            "Checks whether we understand the lesson or not",
+            "Uses audio-visual aids to help us understands the lesson",
+            "Use at least two teaching strategies during a class session",
+            "Summarizes or sk us to summarize the important points of our lesson"
+        ]
+    }, {
+        "name": "RAPPORT WITH THE CLASS",
+        "questions": [
+            "Appears at ease or comfortable in teaching us",
+            "Makes us feel at ease such that we are not afraid to answer nor to ask questions",
+            "Shows concern for us (Does not humiliate us nor embarrass us for wrong answers)"
+        ]
+    }, {
+        "name": "CLASSROOM MANAGEMENT",
+        "questions": [
+            "Starts and ends or class on time",
+            "Comes to class prepared, we are able to finish the lesson we are supposed to cover",
+            "Sees to it that we behave properly in class"
+        ]
+    }, {
+        "name": "TECHNOLOGICAL SKILLS",
+        "questions": [
+            "Maintains an engaging environment during online class",
+            "Demonstrates confidence in using applications such as Microsoft 365, and other online tools",
+            "Shows willingness to assists students with technical issues when needed during online class",
+            "Provides timely feedback of online tasks in both synchronous and asynchronous"
+        ]
+    }]
+}

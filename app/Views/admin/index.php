@@ -51,25 +51,15 @@
 						</div>
 					</div>
 				</li>
-				<li>
-					<div class="menu">
-						<a class="sub-btn"><span class="las la-cogs"></span><span class="name">Settings</span><i class="lar la-arrow-alt-circle-right dropdown"></i></a>
-						<div class="sub-menu">
-							<a href="/admin/student/shift" class="sub-item"> Shift Students </a>
-							<a href="/admin/evaluation/list" class="sub-item"> Manage Questionnaires </a>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="menu">
-						<a class="sub-btn"><span class="las la-chart-area"></span><span class="name">Report</span><i class="lar la-arrow-alt-circle-right dropdown"></i></a>
-						<div class="sub-menu">
-							<a href="/admin/report/list" class="sub-item"> Faculty Evaluation </a>
-							<a href="/admin/report/chart" class="sub-item"> Evaluation Chart </a>
-							<a href="/admin/report/non-submitted" class="sub-item"> Non-Submitted Students </a>
-						</div>
-					</div>
-				</li>
+                <li>
+                    <div class="menu">
+                        <a class="sub-btn"><span class="las la-chart-area"></span><span class="name">Report</span><i class="lar la-arrow-alt-circle-right dropdown"></i></a>
+                        <div class="sub-menu">
+                            <a href="/admin/report/faculty" class="sub-item"> Faculty Evaluation </a>
+                            <a href="/admin/report/student" class="sub-item"> Student Evaluation </a>
+                        </div>
+                    </div>
+                </li>
 			</ul>
 		</div>
 	</div>
