@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2021 at 06:22 PM
+-- Generation Time: May 02, 2021 at 10:49 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -55,25 +55,6 @@ CREATE TABLE `course` (
   `batch` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `course`
---
-
-INSERT INTO `course` (`id`, `course_name`, `course_code`, `semester`, `batch`) VALUES
-(1, 'Course 1', 'C1', '1st', '2019-2020'),
-(2, 'Course 2', 'C2', '1st', '2019-2020');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `evaluation`
---
-
-CREATE TABLE `evaluation` (
-  `id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 -- --------------------------------------------------------
 
 --
@@ -84,72 +65,21 @@ CREATE TABLE `evaluation_faculty` (
   `id` int(11) NOT NULL,
   `evaluator` int(11) NOT NULL,
   `evaluatee` int(11) NOT NULL,
-  `rate_1` int(11) NOT NULL,
-  `rate_2` int(11) NOT NULL,
-  `rate_3` int(11) NOT NULL,
-  `rate_4` int(11) NOT NULL,
-  `rate_5` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `evaluation_faculty`
---
-
-INSERT INTO `evaluation_faculty` (`id`, `evaluator`, `evaluatee`, `rate_1`, `rate_2`, `rate_3`, `rate_4`, `rate_5`) VALUES
-(10, 2, 1, 5, 4, 3, 4, 2),
-(11, 2, 3, 5, 4, 3, 4, 1),
-(12, 2, 4, 1, 2, 1, 3, 2),
-(13, 3, 2, 5, 5, 5, 5, 5),
-(14, 3, 1, 4, 3, 2, 4, 5);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `evaluation_faculty_designation`
---
-
-CREATE TABLE `evaluation_faculty_designation` (
-  `id` int(11) NOT NULL,
-  `evaluation_id` int(11) NOT NULL,
-  `faculty_id` int(11) NOT NULL
+  `content` mediumtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `evaluation_question`
+-- Table structure for table `evaluation_student`
 --
 
-CREATE TABLE `evaluation_question` (
+CREATE TABLE `evaluation_student` (
   `id` int(11) NOT NULL,
-  `evaluation_id` int(11) NOT NULL,
-  `question` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `evaluation_submission`
---
-
-CREATE TABLE `evaluation_submission` (
-  `id` int(11) NOT NULL,
-  `evaluation_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
   `faculty_id` int(11) NOT NULL,
-  `student_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `evaluation_submission_answer`
---
-
-CREATE TABLE `evaluation_submission_answer` (
-  `id` int(11) NOT NULL,
-  `evaluation_submission_id` int(11) NOT NULL,
-  `evaluation_question_id` int(11) NOT NULL,
-  `rate` int(11) NOT NULL
+  `course_id` int(11) NOT NULL,
+  `content` mediumtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -168,16 +98,6 @@ CREATE TABLE `faculty` (
   `designation` varchar(50) NOT NULL,
   `department` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `faculty`
---
-
-INSERT INTO `faculty` (`id`, `first_name`, `middle_name`, `last_name`, `email_address`, `password`, `designation`, `department`) VALUES
-(1, 'John', 'Malate', 'Doe', 'john.doe@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'ftf', 'gs'),
-(2, 'Randy', 'Reyes', 'Otero', 'randy.otero@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'ptf', 'jhs'),
-(3, 'Jamel', 'N', 'Cagampang', 'jam@maj.com', 'e10adc3949ba59abbe56e057f20f883e', 'ftf', 'gs'),
-(4, 'A', 'B', 'C', 'abc@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'ptf', 'jhs');
 
 -- --------------------------------------------------------
 
@@ -203,16 +123,10 @@ CREATE TABLE `student` (
   `middle_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `email_address` varchar(100) NOT NULL,
+  `student_id` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `last_update_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `student`
---
-
-INSERT INTO `student` (`id`, `first_name`, `middle_name`, `last_name`, `email_address`, `password`, `last_update_date`) VALUES
-(1, 'Maria', 'Leonora', 'Theresa', 'the.grudge@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL);
 
 -- --------------------------------------------------------
 
@@ -243,39 +157,15 @@ ALTER TABLE `course`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `evaluation`
---
-ALTER TABLE `evaluation`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `evaluation_faculty`
 --
 ALTER TABLE `evaluation_faculty`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `evaluation_faculty_designation`
+-- Indexes for table `evaluation_student`
 --
-ALTER TABLE `evaluation_faculty_designation`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `evaluation_question`
---
-ALTER TABLE `evaluation_question`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `evaluation_submission`
---
-ALTER TABLE `evaluation_submission`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `evaluation_submission_answer`
---
-ALTER TABLE `evaluation_submission_answer`
+ALTER TABLE `evaluation_student`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -316,49 +206,25 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `evaluation`
---
-ALTER TABLE `evaluation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `evaluation_faculty`
 --
 ALTER TABLE `evaluation_faculty`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT for table `evaluation_faculty_designation`
---
-ALTER TABLE `evaluation_faculty_designation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `evaluation_question`
+-- AUTO_INCREMENT for table `evaluation_student`
 --
-ALTER TABLE `evaluation_question`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `evaluation_submission`
---
-ALTER TABLE `evaluation_submission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `evaluation_submission_answer`
---
-ALTER TABLE `evaluation_submission_answer`
+ALTER TABLE `evaluation_student`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `faculty`
 --
 ALTER TABLE `faculty`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `faculty_course_assignment`
@@ -370,7 +236,7 @@ ALTER TABLE `faculty_course_assignment`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `student_course_assignment`
