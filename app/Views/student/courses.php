@@ -3,9 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Courses</title>
+	<title>Student Dashboard</title>
 	<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/css/style.css">
 </head>
 
@@ -19,11 +20,11 @@
 		<div class="sidebar-menu">
 			<ul>
 				<li>
-					<a href="/student" class="active"><span class="las la-clipboard"></span>
+					<a href="/student"><span class="las la-clipboard"></span>
 						<span>Dashboard</span></a>
 				</li>
 				<li>
-					<a href="/student/course"><span class="las la-clipboard-list"></span>
+					<a href="/student/course" class="active"><span class="las la-clipboard-list"></span>
 						<span>Course</span></a>
 				</li>
 				<li>
@@ -57,74 +58,35 @@
 		</header>
 
 		<main>
-
-			<div class="cards">
-				<div class="card-single">
-					<div>
-						<h1>5</h1>
-						<span>Recent Acvitities</span>
-					</div>
-					<div>
-						<span class="las la-clipboard-list"></span>
-					</div>
-				</div>
-
-				<div class="card-single">
-					<div>
-						<h1>10</h1>
-						<span>Total Courses</span>
-					</div>
-					<div>
-						<span class="las la-clipboard"></span>
-					</div>
-				</div>
-				<div class="card-single">
-					<div>
-						<h1>3</h1>
-						<span>Feedback</span>
-					</div>
-					<div>
-						<span class="las la-clipboard"></span>
-					</div>
-				</div>
-			</div>
-
-			<div class="recent-grid">
+			<div class="recent-grid" style="margin-top: 0px;">
 				<div class="projects">
 					<div class="card">
 						<div class="card-header">
-							<h3> Recent Activities </h3>
-							<button>See all<span class="las la-arrow-right">
+							<h3>Courses</h3>
 						</div>
+
 						<div class="card-body">
 							<div class="table-responsive">
 								<table width="100%">
 									<thead>
 										<tr>
-											<td> Faculty Name </td>
-											<td> Course </td>
-											<td> Status </td>
+											<td> Course Code </td>
+											<td> Course Name </td>
+											<td> Semester </td>
+											<td> Batch </td>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td> Ms. Maranan </td>
-											<td> CS2D </td>
-											<td><span class="status purple"></span> completed
-											</td>
-										</tr>
-										<tr>
-											<td> Mr. Santos </td>
-											<td> CS3D </td>
-											<td><span class="status pink"></span> in progress
-											</td>
-										</tr>
-										<tr>
-											<td> Ms. Ramos </td>
-											<td> Res1A </td>
-											<td><span class="status purple"></span> completed
-											</td>
-										</tr>
+										<?php if ($list) : ?>
+											<?php foreach ($list as $item) : ?>
+												<tr>
+													<td> <?php echo $item['course_code']; ?> </td>
+													<td> <?php echo $item['course_name']; ?> </td>
+													<td> <?php echo $item['semester']; ?> </td>
+													<td> <?php echo $item['batch']; ?> </td>
+												</tr>
+											<?php endforeach; ?>
+										<?php endif; ?>
 									</tbody>
 								</table>
 							</div>

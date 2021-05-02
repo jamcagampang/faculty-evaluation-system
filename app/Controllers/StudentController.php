@@ -138,4 +138,38 @@ class StudentController extends BaseController
 
         return redirect()->to('/student/feedback');
     }
+
+    public function courseView()
+    {
+
+        // No session yet.
+        if ($_SESSION['type'] == null || $_SESSION['id'] == null || $_SESSION['type'] !== '2') {
+            return redirect()->to('home');
+        }
+
+        $Student = new Student();
+
+        $record = $Student->where('id', $_SESSION['id'])->first();
+
+        // Non-existent ID.
+        if (!isset($record)) {
+            return redirect()->to('home');
+        }
+
+        $data = [
+            'first_name' => $record['first_name'],
+            'last_name' => $record['last_name'],
+            'list' => []
+        ];
+
+        $query = $this->db->query('select c.* from student_course_assignment as sca left join course as c on sca.course_id = c.id WHERE sca.student_id = 1 = ' . $_SESSION['id']);
+
+        $results = $query->getResult();
+
+        foreach ($results as $row) {
+            $data['list'][] = (array) $row;
+        }
+
+        return view('student/courses', $data);
+    }
 }

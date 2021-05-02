@@ -56,6 +56,7 @@ $routes->get('faculty/result/(:num)', 'FacultyController::reportView/$1');
 
 // Student
 $routes->get('student', 'StudentController::index');
+$routes->get('student/course', 'StudentController::courseView');
 $routes->get('student/feedback', 'StudentController::feedbackView');
 $routes->post('student/feedback', 'StudentController::addFeedback');
 
