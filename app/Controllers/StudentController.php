@@ -162,7 +162,7 @@ class StudentController extends BaseController
             'list' => []
         ];
 
-        $query = $this->db->query('select c.* from student_course_assignment as sca left join course as c on sca.course_id = c.id WHERE sca.student_id = 1 = ' . $_SESSION['id']);
+        $query = $this->db->query('select c.* from student_course_assignment as sca left join course as c on sca.course_id = c.id WHERE sca.student_id = ' . $_SESSION['id']);
 
         $results = $query->getResult();
 
